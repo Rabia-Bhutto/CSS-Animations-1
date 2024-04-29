@@ -1,0 +1,66 @@
+/* Universal Selector */
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* To include the padding and margin in the element's total width and height calculations, rather than adding them on top of the specified width and height. */
+}
+
+/* Body */
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(../Images/bg.jpeg);
+    background-size: cover;
+}
+
+/* The main container div */
+.box
+{
+    position: relative;
+    width: 200px;
+    height: 300px;
+    transform-style: preserve-3d; /* To ensure that any child elements with 3D transforms are rendered in their own 3D space relative to the parent element, rather than being flattened into a single 2D plane. */
+    animation: animate 20s linear infinite; /* Animation */
+}
+
+/* To specify styles for an element at various points during an animation's duration. */
+@keyframes animate
+{
+    /* This specifies the start of the animation */
+    0%
+    {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    /* This specifies the end of the animation */
+    100%
+    {
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+
+.box span 
+{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center; /* Sets the origin point for transformations such as rotation, scaling, and skewing. */
+    transform-style: preserve-3d; /* Maintains the proper layering and depth perception of transformed elements. */
+    transform: rotateY(calc(var(--i)* 45deg)) translateZ(400px); /* First part rotates the element around the Y-axis. After the rotation, the second part translates the element along the Z-axis by 400 pixels. This effectively moves the element towards or away from the viewer in a 3D space. */
+    -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, #0004); /* It is a vendor-prefixed property that allows you to add a reflection effect to an element. */
+}
+
+.box span img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
